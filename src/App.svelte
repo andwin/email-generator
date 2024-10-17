@@ -2,6 +2,8 @@
   import dayjs from "dayjs";
   import formatEmail from "./format_email";
 
+  const settingsKey = 'emailGeneratorSettings';
+
   let email: string
   let pattern = 'test_[YYYYMMDD-HHmm]@example.com';
   let history: string[] = [];
@@ -35,7 +37,7 @@
   }
 
   const loadSettings = () => {
-    const settings = localStorage.getItem('settings');
+    const settings = localStorage.getItem(settingsKey);
     if (!settings) return;
 
     try {
@@ -51,7 +53,7 @@
 
   const saveSettings = () => {
     const settings = JSON.stringify({ pattern, history });
-    localStorage.setItem('settings', settings);
+    localStorage.setItem(settingsKey, settings);
   }
 </script>
 
