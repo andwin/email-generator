@@ -25,7 +25,6 @@
       history = [email, ...history];
     }
 
-
     saveSettings();
   }
 
@@ -39,9 +38,13 @@
     const settings = localStorage.getItem('settings');
     if (!settings) return;
 
-    const parsedSettings = JSON.parse(settings);
-    pattern = parsedSettings.pattern;
-    history = parsedSettings.history;
+    try {
+      const parsedSettings = JSON.parse(settings);
+      pattern = parsedSettings.pattern;
+      history = parsedSettings.history;
+    } catch {
+      // Ignore errors
+    }
   }
   loadSettings();
   generateEmail();
